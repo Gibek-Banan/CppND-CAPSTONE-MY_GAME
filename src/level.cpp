@@ -1,6 +1,7 @@
 #include "level.h"
-
 #include <vector>
+#include "collision.h"
+
 Level::Level(int n = 1) : n(n)
 {
 }
@@ -46,7 +47,22 @@ std::vector<std::vector<Level::State>> Level::ReadBoardFile()
 
     return board;
 }
+void Level::addObstacleToLevel(SDL_Rect& obs)
+{
+    obstacles.emplace_back(obs);
+}
 
+bool Level::obsCollWithHead(SDL_Rect& head)
+{
+    for(const auto& obst : obstacles)
+    {
+        if(Collision::check_collision(obst,head))
+        {
+            return true;
+        }
+    }
+    return false;
+}
 // void Level::RenderLevel(const std::vector<std::vector<State>> board)
 // {
 // }

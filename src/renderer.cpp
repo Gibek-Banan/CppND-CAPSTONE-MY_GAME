@@ -5,11 +5,12 @@
 
 Renderer::Renderer(const std::size_t screen_width,
                    const std::size_t screen_height,
-                   const std::size_t grid_width, const std::size_t grid_height)
+                   const std::size_t grid_width, const std::size_t grid_height, const Level& level)
     : screen_width(screen_width),
       screen_height(screen_height),
       grid_width(grid_width),
-      grid_height(grid_height)
+      grid_height(grid_height),
+      level(level)
 {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -44,7 +45,7 @@ Renderer::~Renderer()
   SDL_Quit();
 }
 
-void Renderer::Render(Snake const snake, SDL_Point const &food)
+void Renderer::Render(Snake& snake, SDL_Point const &food)
 {
   SDL_Rect block;
   block.w = screen_width / grid_width;
@@ -57,7 +58,6 @@ void Renderer::Render(Snake const snake, SDL_Point const &food)
   // Render level
   SDL_SetRenderDrawColor(sdl_renderer, 0x8B, 0x45, 0x13, 0xFF);
   //SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
-  Level level(1);
   auto board = level.ReadBoardFile();
   for (int i = 0; i < board.size(); i++)
   {
@@ -68,6 +68,7 @@ void Renderer::Render(Snake const snake, SDL_Point const &food)
         block.x = i * block.w;
         block.y = j * block.h;
         SDL_RenderFillRect(sdl_renderer, &block);
+        level.addObstacleToLevel(block);
       }
     }
   }
@@ -99,6 +100,8 @@ void Renderer::Render(Snake const snake, SDL_Point const &food)
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
   }
   SDL_RenderFillRect(sdl_renderer, &block);
+  //Check collision
+  if(level.obsCollWithHead(block)) snake.direction=Snake::Direction::kRight;
 
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
