@@ -37,5 +37,9 @@ void Controller::HandleInput(bool &running, Snake &snake) const {
           break;
       }
     }
+    else
+    {
+      snake.direction=Snake::Direction::kIdle;
+    }
   }
 }

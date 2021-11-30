@@ -36,11 +36,15 @@ void Snake::UpdateHead() {
     case Direction::kRight:
       head_x += speed;
       break;
+    case Direction::kIdle:
+      head_x += 0;
+      head_y += 0;
+      break;
   }
 
   // Wrap the Snake around to the beginning if going off of the screen.
-  head_x = fmod(head_x + grid_width, grid_width);
-  head_y = fmod(head_y + grid_height, grid_height);
+  head_x = fmod(head_x + Params::kGridWidth, Params::kGridWidth);
+  head_y = fmod(head_y + Params::kGridHeight, Params::kGridHeight);
 }
 
 void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) {
