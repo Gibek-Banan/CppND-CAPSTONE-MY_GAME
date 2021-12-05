@@ -51,7 +51,7 @@ This work is licensed under a
 I have added some new features to the basic Snake Game:
 1. Obstacles - Snakes cannot cross obstacles. Walls give map more attractive appearance.
 2. Enemy Snake - An Enemy Snake is fighting with us for food! He is indeed hard enemy to beat since he is using ASearch method to navigate food and find the fastest path to catch it. BUT his main disadvantage is that he won't cross the map boarders, so we can try to outplay him.
-3. Map a file - You can create your own cool map since application reads map from just a text file!  
+3. Your own level - You can create your own cool map since application reads map from just a text file!  
 
 <img src="snake_enemy_game.gif"/>
 
@@ -82,7 +82,8 @@ Upgraded classes:
   - render obstacles, enemy and checking for collision
   - set an Enemy direction
 4. Snake
-  -  has Idle State by default and doesn't get faster in every food 
+  - has Idle State by default and doesn't get faster in every food 
+
 Added namespace:
 I have also added header "params.h" - to make life easier every file can now have easy access to basic parameters such as screen or cell size.
 
