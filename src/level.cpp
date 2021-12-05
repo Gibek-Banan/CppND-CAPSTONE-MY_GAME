@@ -68,7 +68,6 @@ std::vector<Level::State> Level::ParseLine(const std::string &line)
 void Level::ReadBoardFile()
 {
     board.clear();
-    //std::string path = "level" + std::to_string(n) + ".txt";
     std::string path = "/home/workspace/CppND-CAPSTONE-MY_GAME/src/level" + std::to_string(n) + ".txt";
 
     std::ifstream myfile(path);
@@ -100,7 +99,7 @@ bool Level::Compare(const vector<int> &a, const vector<int> &b)
 void Level::CellSort(vector<vector<int>> *v)
 {
     sort(v->begin(), v->end(), Level::Compare);
-    //v->erase(unique(v->begin(), v->end(), Level::CompareIfEquals), v->end());
+    // v->erase(unique(v->begin(), v->end(), Level::CompareIfEquals), v->end());
 }
 
 // Calculate the manhattan distance
@@ -226,7 +225,7 @@ bool Level::Search(int initX, int initY, int goalX, int goalY)
     return false;
 }
 
-//Search2 improve ASearch method, becouse ASearch method is not sufficient to find the correct path
+// Search2 improve ASearch method, becouse ASearch method is not sufficient to find the correct path
 void Level::Search2(int initX, int initY, int goalX, int goalY)
 {
     int init[2] = {goalX, goalY};
@@ -251,7 +250,7 @@ void Level::Search2(int initX, int initY, int goalX, int goalY)
 
     while (1)
     {
-        //1. check neighbours
+        // 1. check neighbours
         for (int i = 0; i < 4; i++)
         {
             xSurrounding = x + delta[i][0];
@@ -285,7 +284,7 @@ void Level::Search2(int initX, int initY, int goalX, int goalY)
                 }
             }
         }
-        //2. change direction, if there is a need
+        // 2. change direction, if there is a need
         if ((directionCurrent[0] == 0 && directionCurrent[1] == 0) || !backToCheckpoint)
         {
             for (auto &n : neighbours)
@@ -341,7 +340,7 @@ void Level::Search2(int initX, int initY, int goalX, int goalY)
                 }
             }
         }
-        //3. move to the next cell
+        // 3. move to the next cell
         x += directionCurrent[0];
         y += directionCurrent[1];
         directionPrevious[0] = directionCurrent[0];
