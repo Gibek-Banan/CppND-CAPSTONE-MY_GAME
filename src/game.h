@@ -10,16 +10,18 @@
 #include "level.h"
 #include "params.h"
 
-class Game {
- public:
-  Game( Level level);
+class Game
+{
+public:
+  Game(Level level);
   void Run(Controller const &controller, Renderer &renderer);
   int GetScore() const;
   int GetEnemyScore() const;
   int GetSize() const;
   int GetEnemySize() const;
+  void PlaceFood();
 
- private:
+private:
   Snake snake;
   Enemy enemy;
   Level level;
@@ -33,7 +35,6 @@ class Game {
   int score{0};
   int enemyScore{0};
 
-  void PlaceFood();
   void Update();
 };
 

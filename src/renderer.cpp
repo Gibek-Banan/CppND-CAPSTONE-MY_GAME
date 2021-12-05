@@ -3,8 +3,7 @@
 #include <iostream>
 #include <string>
 
-Renderer::Renderer(const Level& level) :
-      level(level)
+Renderer::Renderer(const Level &level) : level(level)
 {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -41,20 +40,20 @@ Renderer::~Renderer()
   SDL_Quit();
 }
 
-void Renderer::Render(Snake& snake, Enemy& enemy, SDL_Point const &food)
+void Renderer::Render(Snake &snake, Enemy &enemy, SDL_Point const &food)
 {
   // Clear screen
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer);
   // Render level
-  if(enemy.createNewPath)
+  if (enemy.createNewPath)
   {
     level.path.clear();
-    level.updatePath(enemy.head_y,enemy.head_x,food.y,food.x);
-    enemy.createNewPath=false;
+    level.updatePath(enemy.head_y, enemy.head_x, food.y, food.x);
+    enemy.createNewPath = false;
+    //level.PrintBoard();
+    //std::cout<<"Created new Path";
   }
-  //level.PrintBoard();
-  std::cout<<level.path.size()<<std::endl;
   for (int i = 0; i < level.board.size(); i++)
   {
     for (int j = 0; j < level.board[i].size(); j++)
@@ -68,11 +67,11 @@ void Renderer::Render(Snake& snake, Enemy& enemy, SDL_Point const &food)
       }
     }
   }
-  for (auto& p : level.path)
-  {
-    SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0xFF, 0x00, 0xFF);
-    SDL_RenderFillRect(sdl_renderer, &p);
-  }
+  // for (auto &p : level.path)
+  // {
+  //   SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0xFF, 0x00, 0xFF);
+  //   SDL_RenderFillRect(sdl_renderer, &p);
+  // }
   // Render food
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
   block.x = food.x * block.w;
@@ -99,10 +98,11 @@ void Renderer::Render(Snake& snake, Enemy& enemy, SDL_Point const &food)
   {
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
   }
-    //Check collision
-  if(level.obsCollWithHead(block))
+  //Check collision
+  if (level.obsCollWithHead(block))
   {
-    switch (snake.direction) {
+    switch (snake.direction)
+    {
     case Snake::Direction::kUp:
       snake.head_y += snake.speed;
       break;
@@ -133,14 +133,12 @@ void Renderer::Render(Snake& snake, Enemy& enemy, SDL_Point const &food)
     block.y = point.y * block.h;
     SDL_RenderFillRect(sdl_renderer, &block);
   }
-  enemy.direction = enemy.findFood(level);
-  //enemy.direction = Enemy::Direction::kDown;
+  enemy.direction = enemy.findRightDirection(level);
   block.x = static_cast<int>(enemy.head_x) * block.w;
   block.y = static_cast<int>(enemy.head_y) * block.h;
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
-   //enemy head 
+  //enemy head
   SDL_RenderFillRect(sdl_renderer, &block);
-
 
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
@@ -148,6 +146,6 @@ void Renderer::Render(Snake& snake, Enemy& enemy, SDL_Point const &food)
 
 void Renderer::UpdateWindowTitle(int score, int enemyScore, int fps)
 {
-  std::string title{"Snake Score: " + std::to_string(score) + " Enemy Score: " + std::to_string(enemyScore)+" FPS: " + std::to_string(fps)};
+  std::string title{"Snake Score: " + std::to_string(score) + " Enemy Score: " + std::to_string(enemyScore) + " FPS: " + std::to_string(fps)};
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }

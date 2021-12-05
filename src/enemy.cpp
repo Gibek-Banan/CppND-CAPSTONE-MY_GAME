@@ -1,7 +1,7 @@
 #include "enemy.h"
 #include "SDL.h"
 
-Enemy::Direction Enemy::findFood(Level &level)
+Enemy::Direction Enemy::findRightDirection(Level &level)
 {
     SDL_Rect bHead;
     bHead.x = static_cast<int>(Snake::head_x) * Params::kCellWidth;
@@ -22,11 +22,11 @@ Enemy::Direction Enemy::findFood(Level &level)
         if (distanceBetweenHeadAndP < distanceBetweenHeadAndNext)
         {
             bNext = *it;
-            itToErase=it;
+            itToErase = it;
         }
     }
-    if(bHead.x==bNext.x&&bHead.y==bNext.y)
-    level.path.erase(itToErase);
+    if (bHead.x == bNext.x && bHead.y == bNext.y)
+        level.path.erase(itToErase);
     if (bNext.x - bHead.x < 0)
         return Direction::kLeft;
     if (bNext.x - bHead.x > 0)

@@ -2,8 +2,8 @@
 #include <iostream>
 
 Game::Game(Level level)
-    : snake(Params::kGridWidth *1/4, Params::kGridHeight *3/4),
-      enemy(Params::kGridWidth *3/4, Params::kGridHeight *1/4),
+    : snake(Params::kGridWidth * 1 / 4, Params::kGridHeight * 3 / 4),
+      enemy(Params::kGridWidth * 3 / 4, Params::kGridHeight * 1 / 4),
       level(level),
       engine(dev()),
       random_w(0, static_cast<int>(Params::kGridWidth - 1)),
@@ -26,7 +26,7 @@ void Game::Run(Controller const &controller, Renderer &renderer)
     frame_start = SDL_GetTicks();
 
     // Input, Update, Render - the main game loop.
-    controller.HandleInput(running, snake);
+    controller.HandleInput(running, snake, this);
     Update();
     renderer.Render(snake, enemy, food);
 
@@ -57,10 +57,10 @@ void Game::Run(Controller const &controller, Renderer &renderer)
 
 void Game::PlaceFood()
 {
-  enemy.createNewPath=true;
+  enemy.createNewPath = true;
   int x, y;
   SDL_Rect block;
-
+  int i;
   while (true)
   {
     x = random_w(engine);
@@ -71,7 +71,7 @@ void Game::PlaceFood()
     block.y = y * Params::kCellHeight;
     if (!snake.SnakeCell(x, y) && !enemy.SnakeCell(x, y))
     {
-      int i = 0;
+      i = 0;
       for (auto &o : level.obstacles)
       {
         if (o.x != block.x || o.y != block.y)
