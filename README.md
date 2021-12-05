@@ -85,7 +85,7 @@ Upgraded classes:
   - has Idle State by default and doesn't get faster in every food 
 
 Added namespace:
-I have also added header "params.h" - to make life easier every file can now have easy access to basic parameters such as screen or cell size.
+  - I have also added header "params.h" - to make life easier every file can now have easy access to basic parameters such as screen or cell size.
 
 ## Fulfilled Criteria:
 1. The project demonstrates an understanding of C++ functions and control structures.
