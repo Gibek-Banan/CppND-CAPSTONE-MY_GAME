@@ -68,7 +68,7 @@ std::vector<Level::State> Level::ParseLine(const std::string &line)
 void Level::ReadBoardFile()
 {
     board.clear();
-    std::string path = "/home/workspace/CppND-CAPSTONE-MY_GAME/src/level" + std::to_string(n) + ".txt";
+    std::string path = "../src/level" + std::to_string(n) + ".txt";
 
     std::ifstream myfile(path);
     if (myfile)

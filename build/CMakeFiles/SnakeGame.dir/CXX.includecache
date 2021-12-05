@@ -6,26 +6,18 @@
 
 #IncludeRegexTransform: 
 
-/home/workspace/CppND-CAPSTONE-MY_GAME/src/enemy.cpp
-enemy.h
-/home/workspace/CppND-CAPSTONE-MY_GAME/src/enemy.h
+/home/workspace/CppND-CAPSTONE-MY_GAME/src/collision.h
 SDL.h
-/home/workspace/CppND-CAPSTONE-MY_GAME/src/SDL.h
-
-/home/workspace/CppND-CAPSTONE-MY_GAME/src/enemy.h
-vector
 -
-SDL.h
-/home/workspace/CppND-CAPSTONE-MY_GAME/src/SDL.h
-snake.h
-/home/workspace/CppND-CAPSTONE-MY_GAME/src/snake.h
+
+/home/workspace/CppND-CAPSTONE-MY_GAME/src/level.cpp
 level.h
 /home/workspace/CppND-CAPSTONE-MY_GAME/src/level.h
-cmath
+vector
 -
-params.h
-/home/workspace/CppND-CAPSTONE-MY_GAME/src/params.h
-iterator
+collision.h
+/home/workspace/CppND-CAPSTONE-MY_GAME/src/collision.h
+algorithm
 -
 
 /home/workspace/CppND-CAPSTONE-MY_GAME/src/level.h
@@ -49,14 +41,6 @@ params.h
 /home/workspace/CppND-CAPSTONE-MY_GAME/src/params.h
 iostream
 -
-
-/home/workspace/CppND-CAPSTONE-MY_GAME/src/snake.h
-vector
--
-SDL.h
-/home/workspace/CppND-CAPSTONE-MY_GAME/src/SDL.h
-params.h
-/home/workspace/CppND-CAPSTONE-MY_GAME/src/params.h
 
 /usr/include/SDL2/SDL.h
 SDL_main.h
